@@ -38,6 +38,11 @@ const Generator = () => {
           tone: formData.tone,
           cta: formData.cta,
           keywords: formData.keywords || "",
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
         }
       );
 
