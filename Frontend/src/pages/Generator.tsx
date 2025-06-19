@@ -19,6 +19,7 @@ import {
   toggleDarkMode,
   GeneratedEmail,
 } from "@/store/slices/emailSlice";
+import { toast } from "sonner";
 
 const Generator = () => {
   const dispatch = useAppDispatch();
@@ -55,9 +56,21 @@ const Generator = () => {
       };
 
       dispatch(setCurrentEmail(newEmail));
-    } catch (error) {
-      console.error("Failed to generate email:", error);
-      // Optionally show a toast notification or UI error
+    } catch (error: any) {
+      const message =
+        error?.response?.data?.error ||
+        error?.message ||
+        "Something went wrong while generating the email.";
+
+      // Optional: toast UI notification
+      toast.error(message);
+
+      // Better logging
+      console.error("Failed to generate email:", {
+        message: error.message,
+        response: error.response?.data,
+        status: error.response?.status,
+      });
     } finally {
       dispatch(setIsGenerating(false));
     }
