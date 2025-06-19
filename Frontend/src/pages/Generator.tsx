@@ -30,7 +30,7 @@ const Generator = () => {
       dispatch(setIsGenerating(true));
 
       const response = await axios.post(
-        "http://localhost:5000/api/coldemail/generate-email",
+        "https://flaremail.onrender.com/api/coldemail/generate-email",
         {
           targetAudience: formData.targetAudience,
           productService: formData.productService,
