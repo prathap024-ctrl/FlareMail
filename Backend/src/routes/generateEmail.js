@@ -1,9 +1,8 @@
 import { Router } from "express";
-import { generateEmail } from "../LangGraph/langGraph.js";
+import { generateEmail } from "../langchain/langchain.controllers.js";
 
 const router = Router();
 
 router.route("/generate-email").post(generateEmail);
 
-
-export default router
+export default router;
